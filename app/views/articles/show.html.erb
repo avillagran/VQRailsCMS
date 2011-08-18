@@ -1,0 +1,7 @@
+<% if @item.nil? %>
+
+	<h1>Artículo no encontrado</h1>
+
+<% else %>
+	<%= render :partial => 'articles/partials/single', :locals => {:item => @item} %>
+<% end %>

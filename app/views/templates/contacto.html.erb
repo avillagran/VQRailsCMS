@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="mainTitle">
+		<h1><%= @item.title %></h1>
+	</div>
+	<div class="two">
+		<%= simple_form_for :contact, :url => send_contact_path do |f| %>
+		  <%= f.input :nombre %>
+		  <%= f.input :telefono, :label => 'Teléfono' %>
+		  <%= f.input :email %>
+		  <%= f.input :comentario, :as => "text" %>
+		  <%= f.submit 'Enviar', :class => "submit" %>
+		<% end %>
+	</div>
+	<div class="clear"><!-- clear --></div>
+</div>

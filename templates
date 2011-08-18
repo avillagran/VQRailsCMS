@@ -1,0 +1,8 @@
+===================== GIT ADD =====================
+===================== COMMIT: Rename layouts - =====================
+[master 59875e3] Rename layouts -
+ 1 files changed, 11 insertions(+), 0 deletions(-)
+ create mode 100644 db/migrate/20110405190935_rename_layouts_articles_sections.rb
+===================== GIT PULL =====================
+Already up-to-date.
+===================== GIT PUSH =====================

@@ -1,0 +1,12 @@
+<h1>Panel de configuración</h1>
+
+<h2>Modificar mis datos personales</h2>
+<%= simple_form_for(current_user, :url => panel_update_path, :html => {:multipart => true}) do |f| %>
+	<%= f.input :first_name %>
+	<%= f.input :last_name %>
+	<% if current_user.avatar.exists? %>
+		<%= image_tag current_user.avatar.url(:thumb)%>
+	<% end %>
+	<%= f.input :avatar %>
+	<%= f.submit "Actualizar información" %>
+<% end %>

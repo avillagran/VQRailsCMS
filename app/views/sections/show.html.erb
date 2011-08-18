@@ -1,0 +1,11 @@
+<%= @item.title %>
+
+<%= raw @item.content %>
+
+ <% @item.articles.status_published.each do |i| %>
+  <h1><%= link_to i.title, seccion_articulo_path(@item, i) %></h1>
+  <p>
+    <%= i.content %>
+  </p>
+ <% end %>
+

@@ -1,0 +1,12 @@
+<h1>Avatar</h1>
+<% unless @item.avatar.nil? %>
+	<%= image_tag @item.avatar.url(:thumb) %>
+<% end %>
+<%= form_for @item, :html => {:multipart => true} do |f| %>
+<p>
+	<%= f.file_field :avatar %>
+</p>
+<p>
+	<%= f.submit "Cambiar avatar" %>
+</p>
+<% end %>

@@ -1,0 +1,10 @@
+<% unless flash[:notice].blank? %>
+<div class="noticeFlash noticeYes">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+<% unless flash[:error].blank? %>
+<div class="noticeFlash noticeNo">
+	<%= flash[:error] %>
+</div>
+<% end %>

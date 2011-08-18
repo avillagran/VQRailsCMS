@@ -1,0 +1,34 @@
+<%= simple_form_for(@item, :url => @item.new_record? ? admin_articles_path : admin_article_path(@item), :html => {:class => :form, :multipart => true}) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="inputs">
+		<%= f.input :title %>
+		<%= f.input :content, :input_html => {:class => 'mceEditor'} %>
+	  <%= f.input :excerpt %>
+	  <%= f.input :image %>
+		<%= f.input :status, :as => 'select', :collection => {'Borrador' => :draft , 'Publicado' => :published }, :default => 'draft' %>
+	  <%= f.association :section, :prompt => false %>
+	  <%= f.input :template, :collection => templates_list %>
+	  <%= f.input :extra %>
+		<%= f.input :tags %>
+	</div>
+  <div class="actions">
+		<%= f.button :submit %>
+	</div>
+	<% if false %>
+	  <div class="field">
+	    <%= f.label :user_id %><br />
+	    <%= f.text_field :user_id %>
+	  </div>
+	<% end %>
+
+<% end %>

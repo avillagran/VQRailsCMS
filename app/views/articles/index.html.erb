@@ -1,0 +1,5 @@
+<h1>Site index</h1>
+
+<% @items.each do |i| %>
+	<%= render :partial => 'articles/partials/mini', :locals => {:item => i} %>
+<% end %>

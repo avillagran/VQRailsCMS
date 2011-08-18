@@ -1,0 +1,16 @@
+<h1>Site index</h1>
+<% if signed_in? %>
+	<%= link_to 'Desconectar', destroy_user_session_path %>
+	<%#= debug current_user %>
+<% else %>
+	<%= link_to 'Conectar', new_user_session_path %>
+	No conectado
+<% end %>
+
+<h1>Secciones</h1>
+<% @sections.each do |i| %>
+	<h2><%= i.title %></h2>
+	<% i.articles.status_published.each do |a| %>
+		<%= a.title %><br />
+	<% end %>
+<% end %>

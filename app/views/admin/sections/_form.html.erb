@@ -1,0 +1,46 @@
+<% if false %>
+<%= simple_form_for(@item, :url => @item.new_record? ? admin_sections_path : admin_section_path(@item), :html => {:class => :form, :multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+		<%= f.input :title %>
+		<%= f.input :content %>
+		<%= f.input :status, :collection => Section::states, :prompt => false %>
+    <%= f.input :kind, :collection => Section::kinds, :prompt => false %>
+    <%= f.input :template, :collection => templates_list %>
+		<%= f.input :children_template, :collection => templates_list, :label => "Template por defecto para los 'hijos':" %>
+    <%= f.input :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<% end %>
+<%= simple_form_for(@item, :url => @item.new_record? ? admin_sections_path : admin_section_path(@item), :html => {:class => :form, :multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+		<%= f.input :title %>
+		<%= f.input :content %>
+		<%= f.input :parent_id,
+								:collection => nested_set_options(Section,	@item) {|i|
+									i = i[0] if i.class == Array
+									"#{'-' * i.level} #{i.title}" },
+								:label => "Sección"
+	%>
+		<%= f.input :menu_show_childrens %>
+		<%= f.input :status, :collection => Section::states, :prompt => false %>
+    <%= f.input :kind, :collection => Section::kinds, :prompt => false %>
+    <%= f.input :template, :collection => templates_list %>
+		<%= f.input :children_template, :collection => templates_list, :label => "Template por defecto para los 'hijos':" %>
+		<% if @item.image.exists? %>
+			<%= image_tag @item.image.url(:thumb)%>
+		<% end %>
+    <%= f.input :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
