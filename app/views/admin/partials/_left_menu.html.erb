@@ -1,0 +1,7 @@
+<% if false %>
+<li class="<%= controller.controller_path == 'clients' ? 'active' : '' %>"><a href="<%= clients_path %>">Clients</a></li> <li class="<%= controller.controller_path == 'inventories' ? 'active' : '' %>"><a href="<%= inventories_path %>">Inventories</a></li>
+<% end %>
+<%= raw nav_menu('Artículos', admin_articles_path) %>
+<%= raw nav_menu('Secciones', admin_sections_path) %>
+<%= raw nav_menu('Usuarios', admin_users_path) %>
+<%#= raw nav_menu('Configuración', admin_configs_path) %>

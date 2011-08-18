@@ -1,0 +1,29 @@
+<%#= at_index 	:controller 				=> "articles", :name => "Secciones",
+					 		:fields 						=> [['title', 'Título'], ['status', 'Estado']],
+					 		:show_created_at 	=> true,
+							:masculino => false,
+							:actions => [{:label => 'Ver'}],
+							:unique_id => 1
+%>
+
+<%= at_index_nested 	:controller 				=> "articles", :name => "Artículos",
+											:model							=> Section,
+									 		:fields 						=> [['title', ''], ['status', 'Estado']],
+											:actions 						=> [{:label => 'Ver'}],
+											:masculino					=> false,
+											:default_actions		=> false,
+											:unique_id => 1
+%>
+
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+		$('a[data-uniq=1]').each(function(i, k){
+			$(k).click(onSectionClick);
+		});
+	});
+
+	function onSectionClick(e)
+	{
+		window.location = '/admin/articles/'+$(e.target).attr('data-id')+'/section';
+	}
+</script>

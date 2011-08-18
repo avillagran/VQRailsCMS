@@ -1,0 +1,15 @@
+<% content_for :extra do %>
+	<% unless @item.avatar.nil? %>
+		<%= image_tag @item.avatar(:thumb) %>
+	<% end %>
+<% end %>
+
+<%= at_show :controller 				=> "users",
+						:name 							=> "Usuario",
+					 	:fields 						=> [
+																		['email', 'Email'], ['status', 'Estado'], ['first_name', 'Nombre'],
+																		['last_name', 'Apellido'], ['sign_in_count', 'Conexiones']
+																 	 ],
+					 	:show_created_at 		=> true,
+						:extra							=> yield(:extra)
+ %>

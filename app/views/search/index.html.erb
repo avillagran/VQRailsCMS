@@ -1,0 +1,9 @@
+<h1>Buscador</h1>
+<% @items.each do |i| %>
+<div>
+	<%= link_to i.title, i.get_link %>
+	<%= extracto i.excerpt, i.content %>
+</div>
+<% end %>
+
+<%= will_paginate @items %>

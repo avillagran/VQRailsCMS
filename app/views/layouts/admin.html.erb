@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CMS Admin</title>
+
+  <%= stylesheet_link_tag "admin_template/base", "admin_template/themes/default/style", "admin_template/override" %>
+  <%#= javascript_include_tag 'admin_template/jquery-1.2.6', 'admin_template/ui.core-1.2.6', 'rails', 'admin_template/jquery.combobox' %>
+  <%= javascript_include_tag 'jquery', 'rails' %>
+<%= include_tiny_mce_if_needed %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/"><%= link_to "CMS Admin", admin_dashboard_index_path %></a></h1>
+	<% if defined?(admin_login) ? admin_login : true %>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+					<%= render :partial => "admin/partials/right_menu" if defined?(nav_menu) %>
+        </ul>
+      </div>
+      <div id="main-navigation">
+        <ul class="wat-cf">
+					<%= render :partial => "admin/partials/left_menu" if defined?(nav_menu) %>
+				</ul>
+      </div>
+	<% end %>
+    </div>
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+            <p>Copyright &copy; <%= Time.now.year %> CMS.</p>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

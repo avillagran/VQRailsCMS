@@ -1,0 +1,5 @@
+<h1><%= @section.title %></h1>
+<%= at_index 	:controller 				=> "articles", :name => "Contenidos",
+					 		:fields 						=> [['title', 'Título'], ['status', 'Estado']],
+					 		:show_created_at 	=> true, :show_title => false, :extra_params => "?article[section_id]=#{@section.id}"
+%>

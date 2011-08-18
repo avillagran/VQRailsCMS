@@ -1,0 +1,24 @@
+<hr />
+<h1>Categorías</h1>
+<%= link_to "Agregar", "javascript:add('#add_box', '#{new_admin_category_path}')" %>
+
+<div id="add_box"></div>
+
+<%= raw draw_table(:fields => [['title', 'Título']], :values => get_categories, :actions => [{:label => 'Edit', :class => 'edit'}],
+									 :unique_id => 1)%>
+
+<div id="edit_box"></div>
+
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+		$('a[data-uniq=1]').each(function(i, k){
+			$(k).click(onEditCatClick);
+		});
+	});
+
+	function onEditCatClick(e)
+	{
+		console.log($(e.target));
+		add('#edit_box', '/admin/categories/'+$(e.target).attr('data-id')+'/edit/');
+	}
+</script>

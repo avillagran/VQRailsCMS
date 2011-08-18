@@ -1,0 +1,10 @@
+<%#= at_index 	:controller 				=> "sections", :name => "Secciones",
+					 		:fields 						=> [['title', 'Título'], ['status', 'Estado']],
+							:masculino					=> false,
+					 		:show_created_at 	=> true
+%>
+<%= at_index_nested 	:controller 				=> "sections", :name => "Secciones",
+											:model							=> Section,
+									 		:fields 						=> [['title', ''], ['status', 'Estado']],
+											:masculino					=> false
+%>

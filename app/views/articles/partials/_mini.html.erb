@@ -1,0 +1,15 @@
+<p>
+	<%
+
+	if item.tag_list_on("categories").include?("Productos")
+		link = "/product/#{item.to_param}"
+	else
+		link = article_path(item.to_param)
+	end
+	%>
+
+	<%= link_to item.title, link %></h1>
+
+
+	<%= simple_format item.content %>
+</p>

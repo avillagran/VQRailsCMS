@@ -1,0 +1,78 @@
+= Cms
+
+Plugins necesarios en el proyecto principal:
+  - admin_template: https://github.com/avillagran/admin_template
+  - find_by_param
+  - to_slug
+
+
+Instalación:
+
+- Clonar en lib/ del proyecto (quedaría lib/cms)
+- A Gemfile agregar:
+
+    gem "cms", :path => "lib/cms"
+
+Y verificar que existan las siguientes gems:
+
+	# Autentificación
+	gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
+
+	# Formularios simples
+	gem 'simple_form', :git => 'https://github.com/plataformatec/simple_form.git'
+
+	# Tags
+	gem 'acts-as-taggable-on'
+
+	# Paginación
+	gem "will_paginate", "~> 3.0.pre2"
+
+	# Imagenes / Archivos
+	gem "paperclip", "~> 2.3"
+
+	# Mejoras en ActiveRecord
+	gem 'pacecar'
+
+	# Jquery en Rails
+	gem 'jquery-rails', '>= 0.2.6'
+
+	# Slugs
+	gem "friendly_id", "~> 3.2.1"
+
+- Ejecutar:
+
+  bundle install
+
+- Instalar devise
+
+  rails generate devise:install
+
+- Instalar requerimientos de admin_template
+
+  rake admin_template:install
+  rails generate jquery:install
+  mkdir app/views/templates
+
+- Crear config/database.yml y crear la base de datos (rake db:create)
+
+- Ejecutar las migraciones
+
+    cp -rf lib/cms/db/migrate db/ && rake db:migrate
+
+- Crear Secciones / Articulos desde un seed en el proyecto, ejemplo de db/seeds.rb
+
+	Section.create [
+    	{:title => 'About', :status => 'visible', :kind => 'page', :menu_show_childrens => true},
+        {:title => 'Magazine', :status => 'visible', :kind => 'page'},
+        {:title => 'Tienda', :status => 'visible', :kind => 'list'},
+        {:title => 'Nudos', :status => 'visible', :kind => 'list'},
+        {:title => 'Contacto', :status => 'visible', :kind => 'page'}
+    ]
+
+- Ejecutar rake db:seed
+
+- app/controllers/application_controller.rb debe heredar de CmsBase
+	class ApplicationController < CmsBase
+		...
+	end
+

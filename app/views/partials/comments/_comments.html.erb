@@ -1,0 +1,21 @@
+<div id="mainComments">
+	<h5><%= get_comments(@item).size %> <%= t(:title_comments) %></h5>
+	<% if get_comments(@item).size > 0 %>
+	<h2><%= t(:title_comments) %></h2>
+	<div class="commentList">
+		<% get_comments(@item).each do |i| %>
+			<%= render :partial => 'partials/comments/comment', :locals => {:item => i} %>
+		<% end %>
+	</div><!--/commentList-->
+<% end %>
+	<div class="commentResponse">
+		<%# , :remote => true %>
+		<%= simple_form_for :comment, :url => articles_add_comment_path do |f| %>
+			<%= f.input :body, :as => 'text', :label => t(:title_comment), :input_html => {:size => "90x5"} %>
+			<%= f.hidden_field :commentable_id, :value => @item.id %>
+			<%= f.hidden_field :commentable_type, :value => @item.class.to_s %>
+			<%= f.hidden_field :user_id, :value => current_user.nil? ? 0 : current_user.id %>
+			<%= f.submit t(:submit_comment) %>
+		<% end %>
+	</div>
+</div>

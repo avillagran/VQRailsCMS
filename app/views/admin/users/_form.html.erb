@@ -1,0 +1,12 @@
+<%= simple_form_for(@item, :url => @item.new_record? ? admin_users_path : admin_user_path(@item), :html => {:class => :form, :multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

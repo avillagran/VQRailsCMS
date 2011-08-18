@@ -1,0 +1,11 @@
+<% unless item.blank? %>
+<div class="comment <%= cycle('even', 'odd') %>">
+	<div class="commentLeft">
+		<h6><%= item.user.nil? ? 'Anónimo' : item.user.full_name %> <span><%= l item.created_at, :format => :long %></h6>
+	</div>
+	<div class="commentRight text">
+		<%= simple_format item.body %>
+	</div>
+	<div class="clear"><!-- clear --></div>
+</div><!--/comment-->
+<% end %>

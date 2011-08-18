@@ -1,0 +1,8 @@
+<%= simple_form_for @item, :url => @item.new_record? ? admin_categories_path : admin_category_path(@item) do |f| %>
+
+	<%= f.input :title %>
+	<%= f.input :content %>
+
+
+	<%= f.button :submit %>
+<% end %>
